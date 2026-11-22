@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>量子力学 · 课程主页</title>
+<style>
+  :root{
+    --ink:#12293e; --ink-2:#1d3d59; --paper:#f7f4ee; --card:#ffffff;
+    --accent:#b45f2a; --accent-soft:#e8d5c4; --muted:#6b7c8c; --line:#e3ddd2;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:"Noto Serif SC","Songti SC",serif;background:var(--paper);color:var(--ink);line-height:1.7}
+  a{color:inherit;text-decoration:none}
+
+  nav{position:sticky;top:0;z-index:10;background:rgba(247,244,238,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  nav .wrap{max-width:1080px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;gap:28px}
+  nav .brand{font-weight:700;font-size:18px;letter-spacing:2px}
+  nav .links{display:flex;gap:22px;margin-left:auto;font-size:14px;color:var(--muted)}
+  nav .links a:hover{color:var(--accent)}
+  nav .gh{border:1px solid var(--ink);border-radius:999px;padding:4px 14px;font-size:13px;color:var(--ink)!important}
+  nav .gh:hover{background:var(--ink);color:#fff!important}
+
+  header{position:relative;background:linear-gradient(160deg,#0e2237 0%,#16334e 55%,#1d3d59 100%);color:#f3ede2;overflow:hidden}
+  header .wrap{max-width:1080px;margin:0 auto;padding:88px 24px 110px;position:relative;z-index:2}
+  .kicker{font-size:13px;letter-spacing:6px;color:#d9a066;margin-bottom:18px}
+  h1{font-size:56px;font-weight:700;letter-spacing:8px;margin-bottom:10px}
+  .en{font-family:Georgia,serif;font-style:italic;font-size:20px;color:#9db4c8;letter-spacing:1px;margin-bottom:28px}
+  .meta{font-size:15px;color:#c8d4de;max-width:640px}
+  .meta b{color:#f3ede2}
+  .stats{display:flex;gap:40px;margin-top:44px}
+  .stat .num{font-size:34px;font-weight:700;color:#e8b07a}
+  .stat .lbl{font-size:13px;color:#9db4c8;letter-spacing:2px}
+  #wave{position:absolute;inset:0;width:100%;height:100%;z-index:1;opacity:.5}
+
+  main{max-width:1080px;margin:0 auto;padding:64px 24px 96px}
+  h2{font-size:26px;letter-spacing:4px;margin-bottom:6px}
+  .h2-sub{color:var(--muted);font-size:14px;margin-bottom:32px}
+  .h2-sub::before{content:"";display:inline-block;width:36px;height:2px;background:var(--accent);vertical-align:middle;margin-right:10px}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:20px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:22px 24px;transition:transform .18s,box-shadow .18s;display:flex;flex-direction:column}
+  .card:hover{transform:translateY(-3px);box-shadow:0 10px 28px rgba(18,41,62,.10)}
+  .card .ch{font-size:12px;letter-spacing:3px;color:var(--accent);margin-bottom:6px}
+  .card h3{font-size:19px;margin-bottom:12px}
+  .card ul{list-style:none;font-size:13.5px;color:var(--muted);margin-bottom:16px}
+  .card li{padding:5px 0;border-bottom:1px dashed var(--line);display:flex;justify-content:space-between;gap:8px}
+  .card li:last-child{border-bottom:none}
+  .card li a:hover{color:var(--accent)}
+  .card li .dl{color:#a8b6c2;font-size:12px;white-space:nowrap}
+  .card .foot{margin-top:auto;display:flex;justify-content:space-between;align-items:center;padding-top:10px}
+  .card .count{font-size:12px;color:var(--muted)}
+  .btn{font-size:13px;border:1px solid var(--accent);color:var(--accent);border-radius:999px;padding:4px 14px}
+  .btn:hover{background:var(--accent);color:#fff}
+
+  .about{display:grid;grid-template-columns:1.2fr .8fr;gap:32px;margin-top:72px}
+  .panel{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:26px 28px;font-size:14.5px}
+  .panel h3{font-size:17px;margin-bottom:12px;letter-spacing:2px}
+  .panel p{color:#3c4f60;margin-bottom:10px}
+  .panel code{background:#f0ebe1;padding:2px 6px;border-radius:4px;font-size:13px}
+
+  footer{border-top:1px solid var(--line);margin-top:80px}
+  footer .wrap{max-width:1080px;margin:0 auto;padding:28px 24px;display:flex;justify-content:space-between;font-size:13px;color:var(--muted);flex-wrap:wrap;gap:8px}
+
+  @media(max-width:760px){
+    h1{font-size:38px;letter-spacing:4px}
+    .about{grid-template-columns:1fr}
+    .stats{gap:24px;flex-wrap:wrap}
+    nav .links{display:none}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="brand">量子力学</div>
+    <div class="links">
+      <a href="#chapters">章节目录</a>
+      <a href="#about">使用说明</a>
+      <a href="#about">关于课程</a>
+    </div>
+    <a class="gh" href="https://github.com/zhangdajian-sdu/quantum-mechanics-slides" target="_blank" rel="noopener">GitHub ↗</a>
+  </div>
+</nav>
+
+<header>
+  <canvas id="wave"></canvas>
+  <div class="wrap">
+    <div class="kicker">UNDERGRADUATE COURSE · SDU</div>
+    <h1>量子力学</h1>
+    <div class="en">Quantum Mechanics — Lecture Slides</div>
+    <p class="meta">主讲：<b>张大剑</b>（山东大学）· 教材：陈鄂生《量子力学基础教程》<br>
+    全套课件按「现象引入 → 教材推导 → 案例回扣 → 小结与练习」组织，每节一个独立 PPT，免费下载使用。</p>
+    <div class="stats">
+      <div class="stat"><div class="num">10</div><div class="lbl">章节</div></div>
+      <div class="stat"><div class="num">58</div><div class="lbl">节课件</div></div>
+      <div class="stat"><div class="num">16:9</div><div class="lbl">版式</div></div>
+      <div class="stat"><div class="num">CC BY-SA</div><div class="lbl">许可</div></div>
+    </div>
+  </div>
+</header>
+
+<main id="chapters">
+  <h2>章节目录</h2>
+  <div class="h2-sub">点击任意小节下载对应 PPTX，或进入仓库批量获取</div>
+
+  <div class="grid" id="grid"></div>
+
+  <div class="about" id="about">
+    <div class="panel">
+      <h3>使用说明</h3>
+      <p>· 课件为 PowerPoint 格式（.pptx），16:9，可直接授课或二次编辑。</p>
+      <p>· 每节配 <code>make_figures.py</code>，全部插图可复现（Python + matplotlib）。</p>
+      <p>· 章节内容严格对齐陈鄂生《量子力学基础教程》，拓展与史实内容均在页内标注出处与「不作考试要求」。</p>
+      <p>· 许可协议为 <b>CC BY-SA 4.0</b>：可自由使用与改编，但须署名「张大剑（山东大学）」，说明是否修改，且改编作品须以相同协议发布。</p>
+      <p>· 发现错漏欢迎到 GitHub 仓库提 Issue 或 Pull Request。</p>
+    </div>
+    <div class="panel">
+      <h3>关于课程</h3>
+      <p>面向本科生物理类专业，一学期完成，覆盖从量子论历史背景到散射理论的完整脉络。</p>
+      <p>作者为理论物理方向教师，从事量子信息研究。课件遵循统一制作规范，每年按教学反馈修订。</p>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 张大剑 · 山东大学（Shandong University）</span>
+    <span>Built with GitHub Pages · 课件许可 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="noopener">CC BY-SA 4.0</a></span>
+  </div>
+</footer>
+
+<script>
+const REPO="https://github.com/zhangdajian-sdu/quantum-mechanics-slides";
+const chapters=[
+ {n:1,t:"量子力学产生的历史背景",secs:[0,1,2,3,4]},
+ {n:2,t:"波函数与薛定谔方程",secs:[1,2,3,4,5]},
+ {n:3,t:"一维定态问题",secs:[1,2,3,4,5]},
+ {n:4,t:"力学量与算符",secs:[1,2,3,4,5,6,7,8,9]},
+ {n:5,t:"表象",secs:[1,2,3,4]},
+ {n:6,t:"三维定态问题",secs:[1,2,3,4,5,6]},
+ {n:7,t:"近似方法",secs:[1,2,3,4,5,6,7,8]},
+ {n:8,t:"自旋",secs:[1,2,3,4,5,6]},
+ {n:9,t:"全同粒子体系",secs:[1,2,3,4]},
+ {n:10,t:"散射",secs:[1,2,3,4,5,6]},
+];
+const grid=document.getElementById('grid');
+chapters.forEach(c=>{
+  const shown=c.secs.slice(0,4);
+  const items=shown.map(s=>{
+    const id=`ch${c.n}-s${s}`;
+    const url=`${REPO}/raw/main/slides/ch${c.n}/${id}.pptx`;
+    return `<li><a href="${url}">第 ${c.n}.${s} 节</a><span class="dl">PPTX ↓</span></li>`;
+  }).join('');
+  const more=c.secs.length>4
+    ?`<li><a href="${REPO}/tree/main/slides/ch${c.n}">… 共 ${c.secs.length} 节，查看全部</a><span class="dl"></span></li>`:'';
+  grid.insertAdjacentHTML('beforeend',`
+    <div class="card">
+      <div class="ch">CHAPTER ${c.n}</div>
+      <h3>第 ${c.n} 章 · ${c.t}</h3>
+      <ul>${items}${more}</ul>
+      <div class="foot"><span class="count">${c.secs.length} 节课件</span><a class="btn" href="${REPO}/tree/main/slides/ch${c.n}" target="_blank" rel="noopener">浏览整章</a></div>
+    </div>`);
+});
+
+// Hero 背景：波函数概率包络动画
+const cv=document.getElementById('wave'),ctx=cv.getContext('2d');
+function draw(t){
+  const w=cv.width=cv.offsetWidth,h=cv.height=cv.offsetHeight;
+  ctx.clearRect(0,0,w,h);
+  const mid=h*0.62;
+  for(let k=0;k<3;k++){
+    ctx.beginPath();
+    for(let x=0;x<=w;x+=3){
+      const u=x/w;
+      const env=Math.exp(-Math.pow((u-0.5)*3.2,2));
+      const y=mid - env*Math.sin(u*22 - t*0.0016 + k*1.3)*h*0.20*(1-k*0.22);
+      x===0?ctx.moveTo(x,y):ctx.lineTo(x,y);
+    }
+    ctx.strokeStyle=`rgba(232,176,122,${0.55-k*0.15})`;
+    ctx.lineWidth=1.6;
+    ctx.stroke();
+  }
+  requestAnimationFrame(draw);
+}
+requestAnimationFrame(draw);
+</script>
+</body>
+</html>
