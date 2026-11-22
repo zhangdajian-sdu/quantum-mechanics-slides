@@ -3,7 +3,6 @@
 [中文](README.md) | **English**
 
 Instructor: **Da-Jian Zhang** (Shandong University, China)
-Textbook: *A Basic Course in Quantum Mechanics* by Esheng Chen (陈鄂生《量子力学基础教程》)
 
 A complete set of undergraduate quantum mechanics lecture slides: **10 chapters, 58 lectures**, each an independent 16:9 PPT deck. Every lecture follows the same structure: *phenomenon-driven introduction → textbook derivation → case revisit → summary and exercises*.
 
