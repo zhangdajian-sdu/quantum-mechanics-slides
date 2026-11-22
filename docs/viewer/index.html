@@ -16,6 +16,9 @@
   header h1{font-size:16px;font-weight:600;letter-spacing:1px;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   header .dl{font-size:13px;border:1px solid var(--accent);color:var(--accent);border-radius:999px;padding:3px 12px;text-decoration:none;white-space:nowrap}
   header .dl:hover{background:var(--accent);color:#10161d}
+  .lang{border:1px solid #2c3a49;border-radius:999px;overflow:hidden;display:flex;font-size:12px}
+  .lang button{border:none;background:transparent;color:var(--muted);padding:3px 10px;cursor:pointer;font-family:inherit}
+  .lang button.on{background:var(--accent);color:#10161d}
 
   #stage{flex:1;position:relative;display:flex;align-items:center;justify-content:center;min-height:0}
   #slide{max-width:100%;max-height:100%;object-fit:contain;box-shadow:0 6px 40px rgba(0,0,0,.5);user-select:none;-webkit-user-drag:none}
@@ -46,15 +49,19 @@
 <body>
 <div id="app">
   <header>
-    <a class="back" href="../">← 返回目录</a>
+    <a class="back" href="../" id="t-back">← 返回目录</a>
     <h1 id="title">量子力学课件</h1>
+    <div class="lang">
+      <button id="lang-zh">中文</button>
+      <button id="lang-en">EN</button>
+    </div>
     <a class="dl" id="dlBtn" href="#" target="_blank" rel="noopener">下载 PPTX</a>
   </header>
   <div id="stage">
     <img id="slide" alt="课件页面">
     <button class="nav" id="prev" aria-label="上一页">‹</button>
     <button class="nav" id="next" aria-label="下一页">›</button>
-    <div id="err">未找到该课件或页面参数有误。<br><a href="../" style="color:var(--accent)">返回章节目录</a></div>
+    <div id="err"></div>
   </div>
   <footer>
     <span id="counter">– / –</span>
@@ -64,6 +71,29 @@
 </div>
 
 <script>
+const UI={
+ zh:{back:"← 返回目录",dl:"下载 PPTX",hint:"← → 翻页 · F 全屏",
+     err:'未找到该课件或页面参数有误。<br><a href="../" style="color:var(--accent)">返回章节目录</a>',
+     page:i=>'第 '+i+' 页'},
+ en:{back:"← Chapters",dl:"Download PPTX",hint:"← → navigate · F fullscreen",
+     err:'Deck not found or bad parameters.<br><a href="../" style="color:var(--accent)">Back to chapters</a>',
+     page:i=>'Page '+i}
+};
+let lang=localStorage.getItem('qm-lang')||'zh';
+function applyLang(){
+  const t=UI[lang];
+  document.getElementById('t-back').textContent=t.back;
+  document.getElementById('dlBtn').textContent=t.dl;
+  document.getElementById('hint').textContent=t.hint;
+  document.getElementById('err').innerHTML=t.err;
+  document.getElementById('lang-zh').classList.toggle('on',lang==='zh');
+  document.getElementById('lang-en').classList.toggle('on',lang==='en');
+  document.querySelectorAll('#strip img').forEach((im,i)=>im.alt=t.page(i+1));
+}
+document.getElementById('lang-zh').onclick=()=>{lang='zh';localStorage.setItem('qm-lang',lang);applyLang();};
+document.getElementById('lang-en').onclick=()=>{lang='en';localStorage.setItem('qm-lang',lang);applyLang();};
+applyLang();
+
 const REPO="https://github.com/zhangdajian-sdu/quantum-mechanics-slides";
 const q=new URLSearchParams(location.search);
 const deck=q.get('deck');           // 形如 ch4/ch4-s5
@@ -87,7 +117,7 @@ fetch('manifest.json').then(r=>r.json()).then(man=>{
   const thumbs=[];
   for(let i=1;i<=total;i++){
     const t=document.createElement('img');
-    t.src=src(i);t.loading='lazy';t.alt='第 '+i+' 页';
+    t.src=src(i);t.loading='lazy';t.alt=UI[lang].page(i);
     t.onclick=()=>go(i);
     strip.appendChild(t);thumbs.push(t);
   }
