@@ -1,275 +1,123 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>量子力学 · 课程主页</title>
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>量子力学 · 课程主页</title>
 <style>
-  :root{
-    --ink:#12293e; --ink-2:#1d3d59; --paper:#f7f4ee; --card:#ffffff;
-    --accent:#b45f2a; --accent-soft:#e8d5c4; --muted:#6b7c8c; --line:#e3ddd2;
-  }
-  *{margin:0;padding:0;box-sizing:border-box}
-  body{font-family:"Noto Serif SC","Songti SC",serif;background:var(--paper);color:var(--ink);line-height:1.7}
-  body.en{font-family:Georgia,"Times New Roman",serif}
-  a{color:inherit;text-decoration:none}
+:root{--ink:#132e40;--paper:#f7f5ef;--line:#d9d6cb;--muted:#53646a;--bronze:#815b37;--gold:#e7bf84;--serif:Georgia,"Songti SC","Noto Serif CJK SC","Source Han Serif SC",SimSun,serif;--sans:Inter,"PingFang SC","Microsoft YaHei",Arial,sans-serif}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:84px}body{margin:0;color:var(--ink);background:var(--paper);font-family:var(--serif)}a{color:inherit}button{font:inherit}a:focus-visible,summary:focus-visible,button:focus-visible{outline:2px solid #be7739;outline-offset:3px}.wrap{width:min(1140px,calc(100% - 100px));margin:auto}
+nav{position:sticky;top:0;z-index:3;border-bottom:1px solid var(--line);background:var(--paper)}nav .wrap{height:61px;display:flex;align-items:center;gap:28px}nav a{text-decoration:none}.brand{font-weight:700;font-size:19px;letter-spacing:.08em}.brand span{font:italic 22px Georgia;color:var(--bronze);border-right:1px solid var(--line);padding-right:14px;margin-right:14px}nav .navlinks{display:flex;align-items:center;gap:27px;margin-left:auto;font:13px var(--sans)}.lang{display:flex;border:1px solid #c7c7bc;border-radius:20px;padding:2px}.lang button{background:none;border:0;border-radius:15px;font:12px var(--sans);padding:4px 10px;cursor:pointer;color:var(--muted)}.lang [aria-pressed=true]{background:var(--ink);color:white}
+header{position:relative;overflow:hidden;background:radial-gradient(ellipse at 76% 50%,#1d4050 0%,#152f42 46%,#102737 95%);color:#fffcf1}header .wrap{position:relative;padding-block:48px 45px}canvas{position:absolute;right:-1%;top:0;width:55%;height:100%;pointer-events:none}.heroText{position:relative;max-width:52%}.over{margin:0 0 14px;color:#e3c593;font:13px/1.4 var(--sans);letter-spacing:.16em}.over:before{content:'';display:inline-block;background:var(--gold);width:27px;height:1px;vertical-align:middle;margin-right:12px}h1{font-size:clamp(52px,5.3vw,78px);line-height:1.08;letter-spacing:.09em;margin:0;font-weight:700}.subtitle{font:italic 28px/1.3 Georgia,var(--serif);color:#e2ceae;margin:6px 0 23px}.info,.stats{font:14px/1.68 var(--sans);color:#e1e5e5;margin:0}.info a{text-decoration-color:#84969d;text-underline-offset:4px}.stats{margin-top:11px;color:#d8bf99;letter-spacing:.05em}.stats i{font-style:normal;padding:0 9px;color:#9aa6a2}
+main{padding:38px 0 42px}.heading{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:16px;gap:16px}.heading h2{font-size:32px;margin:0;letter-spacing:.05em}.hint{font:13px/1.5 var(--sans);color:var(--muted)}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 36px;align-items:start;border-bottom:1px solid var(--line)}details.chapter{border-top:1px solid #c6c6ba}summary{display:flex;align-items:center;cursor:pointer;list-style:none;gap:17px;min-height:66px;padding:11px 7px 11px 2px}summary::-webkit-details-marker{display:none}summary:hover{background:#eeeae0}summary:hover .chapterName{color:#794e2e}.ord{font:italic 24px/1 Georgia;color:var(--bronze);min-width:32px}.chapterName{font-size:20px;font-weight:bold;line-height:1.4}.qty{margin-left:auto;white-space:nowrap;color:var(--muted);font:12px var(--sans)}.arrow{width:8px;height:8px;flex:none;border-right:1.3px solid var(--bronze);border-bottom:1.3px solid var(--bronze);transform:translateY(-2px) rotate(45deg);margin:0 6px 0 1px}details[open] .arrow{transform:translateY(2px) rotate(225deg)}.lessons{margin:0 4px 14px 51px;padding:0;list-style:none}.lessons li{display:flex;align-items:center;gap:12px;border-top:1px solid var(--line);font:14px/1.55 var(--sans);min-height:43px}.lessons a{text-decoration:none;padding:9px 0}.lessons .view{flex:1}.sec{font-family:Georgia,var(--serif);color:var(--bronze);margin-right:9px}.dl{color:var(--muted);font-size:11px}.lessons a:hover,nav a:hover{text-decoration:underline;text-underline-offset:4px}
+.notes{margin-top:39px;display:grid;grid-template-columns:1fr 1fr;gap:36px}.notes h2{font-size:19px;margin:0 0 9px}.notes p,footer{font:13px/1.8 var(--sans);color:var(--muted);margin:0}.notes a,footer a{text-underline-offset:3px}footer{border-top:1px solid var(--line)}footer .wrap{min-height:68px;display:flex;gap:16px;align-items:center;justify-content:space-between}.footlinks{display:flex;gap:22px}
+html[lang=en] h1{font-size:clamp(44px,4.3vw,66px);letter-spacing:-.035em}html[lang=en] .chapterName{font-size:18px}
+@media(max-width:850px){.wrap{width:calc(100% - 48px)}.grid,.notes{column-gap:22px}.chapterName{font-size:17px}summary{gap:8px}.heroText{max-width:64%}}
+@media(max-width:650px){html{scroll-padding-top:69px}.wrap{width:calc(100% - 36px)}nav .wrap{height:53px;gap:13px}.brand{font-size:16px}.brand span{font-size:18px;padding-right:8px;margin-right:8px}nav .navlinks{gap:0}nav .secondary{display:none}.lang button{padding:5px 8px}header .wrap{padding:32px 0 30px}canvas{right:-21%;top:0;width:79%;height:80%;opacity:.44;mask-image:linear-gradient(90deg,transparent,#000 50%)}.heroText{max-width:100%}.over{font-size:11px;letter-spacing:.11em;margin-bottom:12px}h1{font-size:49px}.subtitle{font-size:23px;margin:6px 0 17px}.info,.stats{font-size:12px}.stats{margin-top:7px}.grid,.notes{grid-template-columns:1fr}.heading{align-items:center;margin-bottom:12px}.heading h2{font-size:26px}.hint{font-size:11px}main{padding:25px 0 30px}.ord{font-size:22px;min-width:29px}summary{min-height:58px;gap:10px}.chapterName{font-size:17px}.lessons{margin-left:40px}.notes{margin-top:26px;gap:22px}footer .wrap{padding:15px 0;display:block}.footlinks{margin-top:5px}html[lang=en] h1{font-size:38px}html[lang=en] .brand{font-size:14px;letter-spacing:0}html[lang=en] .brand span{display:none}html[lang=en] .chapterName{font-size:16px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 
-  nav{position:sticky;top:0;z-index:10;background:rgba(247,244,238,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
-  nav .wrap{max-width:1080px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;gap:28px}
-  nav .brand{font-weight:700;font-size:18px;letter-spacing:2px}
-  nav .links{display:flex;gap:22px;margin-left:auto;font-size:14px;color:var(--muted)}
-  nav .links a:hover{color:var(--accent)}
-  nav .gh{border:1px solid var(--ink);border-radius:999px;padding:4px 14px;font-size:13px;color:var(--ink)!important}
-  nav .gh:hover{background:var(--ink);color:#fff!important}
-  .lang{border:1px solid var(--line);border-radius:999px;overflow:hidden;display:flex;font-size:12.5px}
-  .lang button{border:none;background:transparent;color:var(--muted);padding:4px 12px;cursor:pointer;font-family:inherit}
-  .lang button.on{background:var(--ink);color:#fff}
-
-  header{position:relative;background:linear-gradient(160deg,#0e2237 0%,#16334e 55%,#1d3d59 100%);color:#f3ede2;overflow:hidden}
-  header .wrap{max-width:1080px;margin:0 auto;padding:88px 24px 110px;position:relative;z-index:2}
-  .kicker{font-size:13px;letter-spacing:6px;color:#d9a066;margin-bottom:18px}
-  h1{font-size:56px;font-weight:700;letter-spacing:8px;margin-bottom:10px}
-  body.en h1{letter-spacing:2px}
-  .en{font-family:Georgia,serif;font-style:italic;font-size:20px;color:#9db4c8;letter-spacing:1px;margin-bottom:28px}
-  .meta{font-size:15px;color:#c8d4de;max-width:640px}
-  .meta b{color:#f3ede2}
-  .meta a{color:#e8b07a;text-decoration:underline;text-underline-offset:3px}
-  .meta a:hover{color:#f3ede2}
-  .stats{display:flex;gap:40px;margin-top:44px;flex-wrap:wrap}
-  .stat .num{font-size:34px;font-weight:700;color:#e8b07a}
-  .stat .lbl{font-size:13px;color:#9db4c8;letter-spacing:2px}
-
-  main{max-width:1080px;margin:0 auto;padding:64px 24px 96px}
-  h2{font-size:26px;letter-spacing:4px;margin-bottom:6px}
-  .h2-sub{color:var(--muted);font-size:14px;margin-bottom:32px}
-  .h2-sub::before{content:"";display:inline-block;width:36px;height:2px;background:var(--accent);vertical-align:middle;margin-right:10px}
-
-  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:20px}
-  .card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:22px 24px;transition:transform .18s,box-shadow .18s;display:flex;flex-direction:column}
-  .card:hover{transform:translateY(-3px);box-shadow:0 10px 28px rgba(18,41,62,.10)}
-  .card .ch{font-size:12px;letter-spacing:3px;color:var(--accent);margin-bottom:6px}
-  .card h3{font-size:19px;margin-bottom:12px}
-  .card ul{list-style:none;font-size:13.5px;color:var(--muted);margin-bottom:16px}
-  .card li{padding:5px 0;border-bottom:1px dashed var(--line);display:flex;justify-content:space-between;gap:8px}
-  .card li:last-child{border-bottom:none}
-  .card li a:hover{color:var(--accent)}
-  .card li .dl{color:#a8b6c2;font-size:12px;white-space:nowrap}
-  .card li .dl a{color:#a8b6c2}
-  .card li .dl a:hover{color:var(--accent)}
-  .card .foot{margin-top:auto;display:flex;justify-content:space-between;align-items:center;padding-top:10px}
-  .card .count{font-size:12px;color:var(--muted)}
-  .btn{font-size:13px;border:1px solid var(--accent);color:var(--accent);border-radius:999px;padding:4px 14px}
-  .btn:hover{background:var(--accent);color:#fff}
-
-  .about{display:grid;grid-template-columns:1.2fr .8fr;gap:32px;margin-top:72px}
-  .panel{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:26px 28px;font-size:14.5px}
-  .panel h3{font-size:17px;margin-bottom:12px;letter-spacing:2px}
-  .panel p{color:#3c4f60;margin-bottom:10px}
-  .panel a{color:var(--accent);text-decoration:underline;text-underline-offset:3px}
-  .panel code{background:#f0ebe1;padding:2px 6px;border-radius:4px;font-size:13px}
-
-  footer{border-top:1px solid var(--line);margin-top:80px}
-  footer .wrap{max-width:1080px;margin:0 auto;padding:28px 24px;display:flex;justify-content:space-between;font-size:13px;color:var(--muted);flex-wrap:wrap;gap:8px}
-
-  @media(max-width:760px){
-    h1{font-size:38px;letter-spacing:4px}
-    .about{grid-template-columns:1fr}
-    .stats{gap:24px}
-    nav .links{display:none}
-  }
-</style>
-</head>
-<body>
-
-<nav>
-  <div class="wrap">
-    <div class="brand" id="t-brand">量子力学</div>
-    <div class="links">
-      <a href="#chapters" id="t-nav-ch">章节目录</a>
-      <a href="#about" id="t-nav-use">使用说明</a>
-      <a href="#about" id="t-nav-about">关于课程</a>
-    </div>
-    <div class="lang">
-      <button id="lang-zh" onclick="setLang('zh')">中文</button>
-      <button id="lang-en" onclick="setLang('en')">EN</button>
-    </div>
-    <a class="gh" href="https://github.com/zhangdajian-sdu/quantum-mechanics-slides" target="_blank" rel="noopener">GitHub ↗</a>
-  </div>
-</nav>
-
-<header>
-  <canvas id="wave"></canvas>
-  <div class="wrap">
-    <div class="kicker">UNDERGRADUATE COURSE · SDU</div>
-    <h1 id="t-h1">量子力学</h1>
-    <div class="en" id="t-sub">Quantum Mechanics — Lecture Slides</div>
-    <p class="meta" id="t-meta"></p>
-    <div class="stats">
-      <div class="stat"><div class="num">10</div><div class="lbl" id="t-s1">章节</div></div>
-      <div class="stat"><div class="num">58</div><div class="lbl" id="t-s2">节课件</div></div>
-      <div class="stat"><div class="num">16:9</div><div class="lbl" id="t-s3">版式</div></div>
-      <div class="stat"><div class="num">CC BY-SA</div><div class="lbl" id="t-s4">许可</div></div>
-    </div>
-  </div>
-</header>
-
-<main id="chapters">
-  <h2 id="t-h2">章节目录</h2>
-  <div class="h2-sub" id="t-h2sub">点击小节标题可在线翻阅，或直接下载 PPTX 课件</div>
-
-  <div class="grid" id="grid"></div>
-
-  <div class="about" id="about">
-    <div class="panel">
-      <h3 id="t-use-h">使用说明</h3>
-      <div id="t-use-body"></div>
-    </div>
-    <div class="panel">
-      <h3 id="t-about-h">关于课程</h3>
-      <div id="t-about-body"></div>
-    </div>
-  </div>
-</main>
-
-<footer>
-  <div class="wrap">
-    <span id="t-foot-l">© 2026 张大剑 · 山东大学（Shandong University）</span>
-    <span id="t-foot-r"></span>
-  </div>
-</footer>
-
+@media (min-width:651px){
+  .chapter{border-top:1px solid #bfc2b7;padding:17px 0 15px}
+  .chapterHeader{display:flex;gap:15px;align-items:baseline;margin:0 2px 8px}
+  .chapterHeader .ord{font-weight:normal}
+  .chapterHeader .qty{align-self:center}
+  .chapter .lessons{margin:0 3px 0 49px}
+  .chapter .lessons li{min-height:31px;border:0}
+  .chapter .lessons a{padding:4px 0}
+  .chapter .lessons .sec{display:inline-block;min-width:48px;font-size:13px}
+  .chapter .lessons .dl{color:#627379;font-size:11px}
+  .chapter .lessons li[hidden]{display:none}
+  .more{cursor:pointer;margin:7px 0 0 49px;padding:3px 1px;background:transparent;border:0;color:var(--bronze);font:12px/1.5 var(--sans)}
+  .more:hover{text-decoration:underline;text-underline-offset:4px}
+  .more::after{content:"";display:inline-block;margin-left:9px;width:6px;height:6px;border:solid currentColor;border-width:0 1px 1px 0;transform:translateY(-2px) rotate(45deg)}
+  .more[aria-expanded="true"]::after{transform:translateY(1px) rotate(225deg)}
+}
+.rights{font:13px/1.6 var(--sans);color:#e1c497;margin:6px 0 0}.rights a{text-underline-offset:3px}footer .wrap{padding-block:22px}footer h2{font:700 17px/1.5 var(--serif);color:var(--ink);margin:0 0 6px}footer p{margin:0 0 3px}footer .wrap>a{white-space:nowrap}@media(max-width:650px){.rights{font-size:12px}footer .wrap>a{display:inline-block;margin-top:8px}}
+</style></head>
+<body id="top"><nav><div class="wrap"><a class="brand" href="#top"><span aria-hidden="true">ψ</span><b data-en="Quantum Mechanics">量子力学</b></a><div class="navlinks"><a href="#contents" data-en="Contents">目录</a><a class="secondary" href="#usage" data-en="Usage">使用说明</a><a class="secondary" href="#about" data-en="About">关于课程</a></div><div class="lang"><button lang="zh-CN" aria-pressed="true" onclick="setLang('zh')">中</button><button lang="en" aria-pressed="false" onclick="setLang('en')">EN</button></div></div></nav>
+<header><div class="wrap"><canvas aria-hidden="true"></canvas><div class="heroText"><p class="over" data-en="Shandong University · Undergraduate Physics">山东大学 · 本科物理课程</p><h1 data-en="Quantum Mechanics">量子力学</h1><p class="subtitle" data-en="Lecture Slides">Quantum Mechanics</p><p class="info"><span data-en="Instructor ">主讲 </span><a href="https://faculty.sdu.edu.cn/zhangdajian1/zh_CN/index.htm" data-en="Da-Jian Zhang">张大剑</a><br><span data-en="Textbook · A Basic Course in Quantum Mechanics, Esheng Chen">教材　陈鄂生《量子力学基础教程》</span></p><p class="stats"><span data-en="10 chapters">10 章</span><i>·</i><span data-en="58 lecture decks">58 节课件</span></p><p class="rights"><span data-en="© 2026 Da-Jian Zhang">© 2026 张大剑</span><span aria-hidden="true"> · </span><a href="#license">CC BY-SA 4.0</a></p></div></div></header>
+<main class="wrap"><section id="contents"><div class="heading"><h2 data-en="Contents">章节目录</h2><span class="hint" data-en="Select a chapter to browse">展开章节，选择课件</span></div><div class="grid"></div></section>
+<div class="notes"><section id="usage"><h2 data-en="Using the slides">使用说明</h2><p data-en="Select a lecture to read online. Use the arrow keys or swipe to turn pages. Download the editable 16:9 PowerPoint with the PPTX link.">点小节标题可在线翻阅，支持键盘翻页和手机滑动。点 PPTX 可下载可编辑的 16:9 课件。</p></section><section id="about"><h2 data-en="About the course">关于课程</h2><p data-en="A one-semester course for undergraduate physics students. Lectures begin with a phenomenon and revisit it after developing the theory, followed by a summary and exercises.">面向物理类本科生，一学期完成。每节从物理现象出发，经教材推导回到案例，最后以小结与练习收束。</p></section></div></main>
+<footer id="license"><div class="wrap"><div class="rightsNote"><h2 data-en="Copyright and licensing">版权与许可</h2><p><span data-en="Original lecture materials © 2026 Da-Jian Zhang (Shandong University), licensed under ">原创课件 © 2026 张大剑（山东大学），采用</span> <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/"><span data-en="CC BY-SA 4.0 (Attribution–ShareAlike)">CC BY-SA 4.0（署名—相同方式共享）</span></a><span data-en="."> 许可。</span></p><p><span data-en="When sharing, credit Da-Jian Zhang (Shandong University), link to the ">转载时请署名「张大剑（山东大学）」，附上</span><a href="https://zhangdajian-sdu.github.io/quantum-mechanics-slides/" data-en="course homepage">课程主页</a><span data-en=" and the license, and indicate any changes. Share adaptations under the same license.">和许可链接，并注明所作修改。公开分享改编版本时，请沿用相同许可。</span></p></div><a href="https://github.com/zhangdajian-sdu/quantum-mechanics-slides">GitHub ↗</a></div></footer>
 <script>
-const REPO="https://github.com/zhangdajian-sdu/quantum-mechanics-slides";
-const chapters=[
- {n:1,zh:"量子力学产生的历史背景",en:"Historical Background of Quantum Mechanics",secs:[0,1,2,3,4]},
- {n:2,zh:"波函数与薛定谔方程",en:"Wave Function and the Schrödinger Equation",secs:[1,2,3,4,5]},
- {n:3,zh:"一维定态问题",en:"One-Dimensional Stationary Problems",secs:[1,2,3,4,5]},
- {n:4,zh:"力学量与算符",en:"Observables and Operators",secs:[1,2,3,4,5,6,7,8,9]},
- {n:5,zh:"表象",en:"Representations",secs:[1,2,3,4]},
- {n:6,zh:"三维定态问题",en:"Three-Dimensional Stationary Problems",secs:[1,2,3,4,5,6]},
- {n:7,zh:"近似方法",en:"Approximation Methods",secs:[1,2,3,4,5,6,7,8]},
- {n:8,zh:"自旋",en:"Spin",secs:[1,2,3,4,5,6]},
- {n:9,zh:"全同粒子体系",en:"Systems of Identical Particles",secs:[1,2,3,4]},
- {n:10,zh:"散射",en:"Scattering",secs:[1,2,3,4,5,6]},
-];
-
-const I18N={
- zh:{
-  brand:"量子力学",navCh:"章节目录",navUse:"使用说明",navAbout:"关于课程",
-  h1:"量子力学",sub:"Quantum Mechanics — Lecture Slides",
-  meta:`主讲：<b><a href="https://faculty.sdu.edu.cn/zhangdajian1/zh_CN/index.htm" target="_blank" rel="noopener">张大剑</a></b>（山东大学）· 教材：陈鄂生《量子力学基础教程》<br>全套课件按「现象引入 → 教材推导 → 案例回扣 → 小结与练习」组织，每节一个独立 PPT，免费下载使用。`,
-  s1:"章节",s2:"节课件",s3:"版式",s4:"许可",
-  h2:"章节目录",h2sub:"点击小节标题可在线翻阅，或直接下载 PPTX 课件",
-  sec:(n,s)=>`第 ${n}.${s} 节`,view:"在线查看",more:k=>`… 共 ${k} 节，查看全部`,
-  count:k=>`${k} 节课件`,browse:"浏览整章",
-  cardTitle:c=>`第 ${c.n} 章 · ${c.zh}`,
-  viewTitle:(c,s)=>`第 ${c.n}.${s} 节 · ${c.zh}`,
-  useH:"使用说明",
-  useBody:`<p>· 课件为 PowerPoint 格式（.pptx），16:9，可直接授课或二次编辑。</p>
-    <p>· 每节课件支持<b>在线翻页查看</b>，无需下载，支持键盘翻页与手机滑动。</p>
-    <p>· 每节配 <code>make_figures.py</code>，全部插图可复现（Python + matplotlib）。</p>
-    <p>· 章节内容严格对齐陈鄂生《量子力学基础教程》，拓展与史实内容均在页内标注出处与「不作考试要求」。</p>
-    <p>· 许可协议为 <b>CC BY-SA 4.0</b>：可自由使用与改编，但须署名「张大剑（山东大学）」，说明是否修改，且改编作品须以相同协议发布。</p>
-    <p>· 发现错漏欢迎到 GitHub 仓库提 Issue 或 Pull Request。</p>`,
-  aboutH:"关于课程",
-  aboutBody:`<p>面向本科生物理类专业，一学期完成，覆盖从量子论历史背景到散射理论的完整脉络。</p>
-    <p>作者为理论物理方向教师，从事量子信息研究。课件遵循统一制作规范，每年按教学反馈修订。</p>
-    <p>教师主页：<a href="https://faculty.sdu.edu.cn/zhangdajian1/zh_CN/index.htm" target="_blank" rel="noopener">faculty.sdu.edu.cn/zhangdajian1</a></p>`,
-  footL:"© 2026 张大剑 · 山东大学（Shandong University）",
-  footR:`Built with GitHub Pages · 课件许可 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="noopener">CC BY-SA 4.0</a>`,
-  docTitle:"量子力学 · 课程主页"
- },
- en:{
-  brand:"Quantum Mechanics",navCh:"Chapters",navUse:"Usage",navAbout:"About",
-  h1:"Quantum Mechanics",sub:"量子力学 — Lecture Slides",
-  meta:`Instructor: <b><a href="https://faculty.sdu.edu.cn/zhangdajian1/en/index.htm" target="_blank" rel="noopener">Da-Jian Zhang</a></b> (Shandong University) · Textbook: <i>A Basic Course in Quantum Mechanics</i> by Esheng Chen<br>Each lecture is an independent PPT deck organized as “phenomenon → derivation → case revisit → summary & exercises”, free to browse and download.`,
-  s1:"chapters",s2:"lectures",s3:"format",s4:"license",
-  h2:"Chapters",h2sub:"Click a lecture title to flip through it online, or download the PPTX directly",
-  sec:(n,s)=>`Lecture ${n}.${s}`,view:"View online",more:k=>`… all ${k} lectures`,
-  count:k=>`${k} lectures`,browse:"Browse chapter",
-  cardTitle:c=>`Chapter ${c.n} · ${c.en}`,
-  viewTitle:(c,s)=>`Lecture ${c.n}.${s} · ${c.en}`,
-  useH:"Usage",
-  useBody:`<p>· Slides are PowerPoint files (.pptx, 16:9), ready for teaching or further editing.</p>
-    <p>· Every lecture can be <b>flipped through online</b> — no download needed, with keyboard navigation and touch swipe.</p>
-    <p>· Each lecture ships with <code>make_figures.py</code>, which regenerates every figure (Python + matplotlib).</p>
-    <p>· Content follows Esheng Chen's <i>A Basic Course in Quantum Mechanics</i>; supplementary and historical material is marked with sources and “not required for exams”.</p>
-    <p>· Licensed under <b>CC BY-SA 4.0</b>: free to share and adapt with credit to “Da-Jian Zhang (Shandong University)”, changes indicated, and adaptations under the same license.</p>
-    <p>· Found a mistake? Issues and pull requests are welcome on GitHub.</p>`,
-  aboutH:"About",
-  aboutBody:`<p>A one-semester course for undergraduate physics majors, covering the full arc from the historical origins of quantum theory to scattering.</p>
-    <p>The instructor is a theoretical physicist working on quantum information. The slides follow a unified style guide and are revised annually based on teaching feedback.</p>
-    <p>Faculty homepage: <a href="https://faculty.sdu.edu.cn/zhangdajian1/en/index.htm" target="_blank" rel="noopener">faculty.sdu.edu.cn/zhangdajian1</a></p>`,
-  footL:"© 2026 Da-Jian Zhang · Shandong University",
-  footR:`Built with GitHub Pages · Licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a>`,
-  docTitle:"Quantum Mechanics · Lecture Slides"
- }
-};
-
-let lang=localStorage.getItem('qm-lang')||'zh';
-
-function render(){
-  const t=I18N[lang];
-  document.documentElement.lang=lang==='zh'?'zh-CN':'en';
-  document.body.classList.toggle('en',lang==='en');
-  document.title=t.docTitle;
-  const set=(id,v)=>{document.getElementById(id).textContent=v;};
-  const setH=(id,v)=>{document.getElementById(id).innerHTML=v;};
-  set('t-brand',t.brand);set('t-nav-ch',t.navCh);set('t-nav-use',t.navUse);set('t-nav-about',t.navAbout);
-  set('t-h1',t.h1);set('t-sub',t.sub);setH('t-meta',t.meta);
-  set('t-s1',t.s1);set('t-s2',t.s2);set('t-s3',t.s3);set('t-s4',t.s4);
-  set('t-h2',t.h2);set('t-h2sub',t.h2sub);
-  set('t-use-h',t.useH);setH('t-use-body',t.useBody);
-  set('t-about-h',t.aboutH);setH('t-about-body',t.aboutBody);
-  set('t-foot-l',t.footL);setH('t-foot-r',t.footR);
-  document.getElementById('lang-zh').classList.toggle('on',lang==='zh');
-  document.getElementById('lang-en').classList.toggle('on',lang==='en');
-
-  const grid=document.getElementById('grid');
-  grid.innerHTML='';
-  chapters.forEach(c=>{
-    const shown=c.secs.slice(0,4);
-    const items=shown.map(s=>{
-      const id=`ch${c.n}-s${s}`;
-      const pptx=`${REPO}/raw/main/slides/ch${c.n}/${id}.pptx`;
-      const view=`viewer/?deck=ch${c.n}/${id}&t=${encodeURIComponent(t.viewTitle(c,s))}`;
-      return `<li><a href="${view}">${t.sec(c.n,s)}</a><span class="dl"><a href="${view}">${t.view}</a> · <a href="${pptx}">PPTX ↓</a></span></li>`;
-    }).join('');
-    const more=c.secs.length>4
-      ?`<li><a href="${REPO}/tree/main/slides/ch${c.n}">${t.more(c.secs.length)}</a><span class="dl"></span></li>`:'';
-    grid.insertAdjacentHTML('beforeend',`
-      <div class="card">
-        <div class="ch">CHAPTER ${c.n}</div>
-        <h3>${t.cardTitle(c)}</h3>
-        <ul>${items}${more}</ul>
-        <div class="foot"><span class="count">${t.count(c.secs.length)}</span><a class="btn" href="${REPO}/tree/main/slides/ch${c.n}" target="_blank" rel="noopener">${t.browse}</a></div>
-      </div>`);
-  });
-}
-function setLang(l){lang=l;localStorage.setItem('qm-lang',l);render();}
-render();
-
-// Hero 背景：波函数概率包络动画
-const cv=document.getElementById('wave'),ctx=cv.getContext('2d');
-function draw(tm){
-  const w=cv.width=cv.offsetWidth,h=cv.height=cv.offsetHeight;
-  ctx.clearRect(0,0,w,h);
-  const mid=h*0.62;
-  for(let k=0;k<3;k++){
-    ctx.beginPath();
-    for(let x=0;x<=w;x+=3){
-      const u=x/w;
-      const env=Math.exp(-Math.pow((u-0.5)*3.2,2));
-      const y=mid - env*Math.sin(u*22 - tm*0.0016 + k*1.3)*h*0.20*(1-k*0.22);
-      x===0?ctx.moveTo(x,y):ctx.lineTo(x,y);
-    }
-    ctx.strokeStyle=`rgba(232,176,122,${0.55-k*0.15})`;
-    ctx.lineWidth=1.6;
-    ctx.stroke();
+const chapters=[{"zh": "量子力学产生的历史背景", "en": "Historical Background of Quantum Mechanics", "lessons": [{"deck": "ch1/ch1-s0", "sec": "", "zh": "走进量子力学", "en": "Introduction to quantum mechanics"}, {"deck": "ch1/ch1-s1", "sec": "1.1–1.2", "zh": "黑体辐射与普朗克假设", "en": "Blackbody radiation and Planck’s hypothesis"}, {"deck": "ch1/ch1-s2", "sec": "1.3", "zh": "光电效应与光量子", "en": "The photoelectric effect and light quanta"}, {"deck": "ch1/ch1-s3", "sec": "1.4", "zh": "玻尔原子结构理论", "en": "Bohr’s model of the atom"}, {"deck": "ch1/ch1-s4", "sec": "1.5", "zh": "德布罗意物质波", "en": "De Broglie matter waves"}]}, {"zh": "波函数与薛定谔方程", "en": "Wave Function and the Schrödinger Equation", "lessons": [{"deck": "ch2/ch2-s1", "sec": "2.1", "zh": "波函数及其统计意义", "en": "The wave function and its statistical interpretation"}, {"deck": "ch2/ch2-s2", "sec": "2.2", "zh": "自由粒子平面波函数", "en": "Plane waves for a free particle"}, {"deck": "ch2/ch2-s3", "sec": "2.3", "zh": "量子力学基本假定 2，薛定谔方程", "en": "The Schrödinger equation"}, {"deck": "ch2/ch2-s4", "sec": "2.4", "zh": "几率守恒与几率流密度矢量", "en": "Probability conservation and current density"}, {"deck": "ch2/ch2-s5", "sec": "2.5", "zh": "定态薛定谔方程", "en": "The time-independent Schrödinger equation"}]}, {"zh": "一维定态问题", "en": "One-Dimensional Stationary Problems", "lessons": [{"deck": "ch3/ch3-s1", "sec": "3.1", "zh": "一维束缚定态的性质", "en": "Properties of one-dimensional bound states"}, {"deck": "ch3/ch3-s2", "sec": "3.2", "zh": "一维方势阱", "en": "The square well"}, {"deck": "ch3/ch3-s3", "sec": "3.3", "zh": "一维谐振子", "en": "The harmonic oscillator"}, {"deck": "ch3/ch3-s4", "sec": "3.4", "zh": "势垒穿透", "en": "Barrier penetration"}, {"deck": "ch3/ch3-s5", "sec": "3.5", "zh": "δ 函数势", "en": "The delta-function potential"}]}, {"zh": "力学量与算符", "en": "Observables and Operators", "lessons": [{"deck": "ch4/ch4-s1", "sec": "4.1", "zh": "线性算符、对易关系与厄密算符", "en": "Linear operators, commutators and Hermitian operators"}, {"deck": "ch4/ch4-s2", "sec": "4.2", "zh": "厄密算符的性质", "en": "Properties of Hermitian operators"}, {"deck": "ch4/ch4-s3", "sec": "4.3", "zh": "量子力学的基本假定", "en": "Postulates of quantum mechanics"}, {"deck": "ch4/ch4-s4", "sec": "4.4", "zh": "常用的力学量算符", "en": "Common observable operators"}, {"deck": "ch4/ch4-s5", "sec": "4.5", "zh": "基本假定 4：力学量平均值", "en": "Expectation values"}, {"deck": "ch4/ch4-s6", "sec": "4.6", "zh": "不确定关系", "en": "Uncertainty relations"}, {"deck": "ch4/ch4-s7", "sec": "4.7", "zh": "守恒量", "en": "Conserved quantities"}, {"deck": "ch4/ch4-s8", "sec": "4.8", "zh": "两种绘景", "en": "Two pictures of evolution"}, {"deck": "ch4/ch4-s9", "sec": "4.9", "zh": "维里定理与 F–H 定理", "en": "The virial and Feynman–Hellmann theorems"}]}, {"zh": "表象", "en": "Representations", "lessons": [{"deck": "ch5/ch5-s1", "sec": "5.1", "zh": "坐标表象与动量表象", "en": "Position and momentum representations"}, {"deck": "ch5/ch5-s2", "sec": "5.2", "zh": "本征值分立的力学量表象", "en": "Discrete-spectrum representations"}, {"deck": "ch5/ch5-s3", "sec": "5.3", "zh": "表象变换", "en": "Changes of representation"}, {"deck": "ch5/ch5-s4", "sec": "5.4", "zh": "狄拉克符号", "en": "Dirac notation"}]}, {"zh": "三维定态问题", "en": "Three-Dimensional Stationary Problems", "lessons": [{"deck": "ch6/ch6-s1", "sec": "6.1", "zh": "简单的三维定态问题", "en": "Simple three-dimensional stationary problems"}, {"deck": "ch6/ch6-s2", "sec": "6.2", "zh": "两体问题", "en": "The two-body problem"}, {"deck": "ch6/ch6-s3", "sec": "6.3", "zh": "中心力场", "en": "Central potentials"}, {"deck": "ch6/ch6-s4", "sec": "6.4", "zh": "氢原子", "en": "The hydrogen atom"}, {"deck": "ch6/ch6-s5", "sec": "6.5", "zh": "球方势阱", "en": "The spherical square well"}, {"deck": "ch6/ch6-s6", "sec": "6.6", "zh": "带电粒子在电磁场中的运动", "en": "Charged particles in electromagnetic fields"}]}, {"zh": "近似方法", "en": "Approximation Methods", "lessons": [{"deck": "ch7/ch7-s1", "sec": "7.1", "zh": "定态非简并微扰方法", "en": "Nondegenerate stationary perturbation theory"}, {"deck": "ch7/ch7-s2", "sec": "7.2", "zh": "定态简并微扰方法", "en": "Degenerate stationary perturbation theory"}, {"deck": "ch7/ch7-s3", "sec": "7.3", "zh": "变分法", "en": "The variational method"}, {"deck": "ch7/ch7-s4", "sec": "7.4", "zh": "与时间有关的微扰", "en": "Time-dependent perturbations"}, {"deck": "ch7/ch7-s5", "sec": "7.5", "zh": "常微扰，黄金规则", "en": "Constant perturbations and the golden rule"}, {"deck": "ch7/ch7-s6", "sec": "7.6", "zh": "周期微扰，共振吸收与发射", "en": "Periodic perturbations and resonant absorption and emission"}, {"deck": "ch7/ch7-s7", "sec": "7.7", "zh": "原子的自发辐射", "en": "Spontaneous emission"}, {"deck": "ch7/ch7-s8", "sec": "7.8", "zh": "能量时间不确定关系", "en": "Energy–time uncertainty relations"}]}, {"zh": "自旋", "en": "Spin", "lessons": [{"deck": "ch8/ch8-s1", "sec": "8.1", "zh": "电子的自旋", "en": "Electron spin"}, {"deck": "ch8/ch8-s2", "sec": "8.2", "zh": "泡利矩阵", "en": "Pauli matrices"}, {"deck": "ch8/ch8-s3", "sec": "8.3", "zh": "两个角动量的耦合", "en": "Addition of angular momenta"}, {"deck": "ch8/ch8-s4", "sec": "8.4", "zh": "两个自旋 1/2 粒子的体系", "en": "Two spin-½ particles"}, {"deck": "ch8/ch8-s5", "sec": "8.5", "zh": "原子光谱的精细结构", "en": "Fine structure of atomic spectra"}, {"deck": "ch8/ch8-s6", "sec": "8.6", "zh": "塞曼效应", "en": "The Zeeman effect"}]}, {"zh": "全同粒子体系", "en": "Systems of Identical Particles", "lessons": [{"deck": "ch9/ch9-s1", "sec": "9.1", "zh": "全同粒子体系", "en": "Identical particles"}, {"deck": "ch9/ch9-s2", "sec": "9.2", "zh": "氦原子", "en": "The helium atom"}, {"deck": "ch9/ch9-s3", "sec": "9.3", "zh": "费米气体模型", "en": "The Fermi gas model"}, {"deck": "ch9/ch9-s4", "sec": "9.4", "zh": "粒子占有数表象", "en": "Occupation-number representation"}]}, {"zh": "散射", "en": "Scattering", "lessons": [{"deck": "ch10/ch10-s1", "sec": "10.1", "zh": "散射截面", "en": "Scattering cross sections"}, {"deck": "ch10/ch10-s2", "sec": "10.2", "zh": "分波法，低能中心力场散射", "en": "Partial waves and low-energy scattering"}, {"deck": "ch10/ch10-s3", "sec": "10.3", "zh": "高能散射，玻恩近似", "en": "High-energy scattering and the Born approximation"}, {"deck": "ch10/ch10-s4", "sec": "10.4", "zh": "质心系与实验室系", "en": "Center-of-mass and laboratory frames"}, {"deck": "ch10/ch10-s5", "sec": "10.5", "zh": "自旋对散射的影响", "en": "Spin dependence of scattering"}, {"deck": "ch10/ch10-s6", "sec": "10.6", "zh": "全同粒子散射", "en": "Scattering of identical particles"}]}];
+const localized=[...document.querySelectorAll('[data-en]')];
+for(const el of localized) el.dataset.zh=el.textContent;
+const base='https://zhangdajian-sdu.github.io/quantum-mechanics-slides/viewer/';
+const repo='https://github.com/zhangdajian-sdu/quantum-mechanics-slides/raw/main/slides/';
+const mobile=matchMedia('(max-width:650px)');
+const desktopOpen=new Set();
+const phoneOpen=new Set();
+let language='zh';
+mobile.addEventListener('change',()=>setLang(language));
+function setLang(lang){
+ language=lang;
+ const english=lang==='en';
+ document.documentElement.lang=english?'en':'zh-CN';
+ document.title=english?'Quantum Mechanics · Lecture Slides':'量子力学 · 课程主页';
+ localized.forEach(el=>el.textContent=el.dataset[lang]);
+ document.querySelectorAll('.lang button').forEach((el,i)=>el.setAttribute('aria-pressed',String(i===Number(english))));
+ const grid=document.querySelector('.grid');
+ if(!mobile.matches) document.querySelector('.hint').textContent=english?'Select a lecture to read online':'点小节标题可在线阅读';
+ grid.replaceChildren();
+ chapters.forEach((c,i)=>{
+  const compact=mobile.matches;
+  const item=document.createElement(compact?'details':'section');item.className='chapter';
+  const summary=document.createElement(compact?'summary':'h3');summary.className='chapterHeader';
+  const num=String(i+1).padStart(2,'0');
+  summary.innerHTML='<span class="ord">'+num+'</span><span class="chapterName">'+c[lang]+'</span><span class="qty">'+c.lessons.length+(english?' lectures':' 节')+'</span><span class="arrow" aria-hidden="true"></span>';
+  const list=document.createElement('ul');list.className='lessons';
+  for(const row of c.lessons){
+   const li=document.createElement('li'),view=document.createElement('a'),dl=document.createElement('a'),sec=document.createElement('span');
+   const title=row[lang];sec.className='sec';sec.textContent=row.sec||(english?'Intro':'导论');
+   view.className='view';view.href=base+'?'+new URLSearchParams({deck:row.deck,t:(row.sec?row.sec+' · ':'')+title});
+   view.append(sec,document.createTextNode(title));
+   dl.className='dl';dl.href=repo+row.deck+'.pptx';dl.textContent='PPTX ↓';dl.setAttribute('aria-label',(english?'Download ':'下载')+title+' PPTX');
+   li.append(view,dl);list.append(li);
   }
-  requestAnimationFrame(draw);
+  item.append(summary,list);
+  if(compact){
+   item.open=phoneOpen.has(i);
+   item.addEventListener('toggle',()=>{if(item.isConnected){if(item.open) phoneOpen.add(i); else phoneOpen.delete(i);}});
+  }else{
+   summary.querySelector('.arrow').remove();
+   list.id='lecture-list-'+i;
+   const button=document.createElement('button');
+   button.className='more';
+   button.setAttribute('aria-controls',list.id);
+   const rest=c.lessons.length-2;
+   function renderRows(){
+    const open=desktopOpen.has(i);
+    [...list.children].slice(2).forEach(li=>li.hidden=!open);
+    button.setAttribute('aria-expanded',String(open));
+    button.textContent=open?(english?'Show fewer':'收起'):(english?'Show '+rest+' more':'展开其余 '+rest+' 节');
+    button.setAttribute('aria-label',c[lang]+' · '+button.textContent);
+   }
+   button.addEventListener('click',()=>{
+    if(desktopOpen.has(i)) desktopOpen.delete(i); else desktopOpen.add(i);
+    renderRows();
+   });
+   renderRows();
+   item.append(button);
+  }
+  grid.append(item);
+ });
 }
-requestAnimationFrame(draw);
-</script>
-</body>
-</html>
+setLang('zh');
+const canvas=document.querySelector('canvas');
+function drawWave(){
+ const w=canvas.clientWidth,h=canvas.clientHeight,scale=window.devicePixelRatio||1;
+ canvas.width=Math.round(w*scale);canvas.height=Math.round(h*scale);
+ const g=canvas.getContext('2d');g.scale(scale,scale);
+ // Perspective slices through a Gaussian wave packet.
+ for(let i=0;i<=38;i++){
+  const v=i/38,depth=v-.5;
+  g.beginPath();
+  for(let j=0;j<=380;j++){
+   const u=j/380,x=(.04+.91*u+depth*.105)*w;
+   const envelope=Math.exp(-Math.pow((u-.52)*3.65,2)-depth*depth*2.2);
+   const y=h*(.53+depth*.38-(u-.5)*.14-.245*envelope*Math.sin(u*19.5+depth*4.9));
+   if(j===0)g.moveTo(x,y);else g.lineTo(x,y);
+  }
+  const gold=i%7===0;
+  g.strokeStyle=gold?'rgba(246,203,134,.86)':'rgba(190,191,161,'+(.32+.27*v)+')';g.lineWidth=gold?1.35:.9;g.stroke();
+ }
+}
+new ResizeObserver(drawWave).observe(canvas);drawWave();
+</script></body></html>
