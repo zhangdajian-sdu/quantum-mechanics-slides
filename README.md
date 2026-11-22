@@ -1,5 +1,7 @@
 # 量子力学 · 课程课件（Quantum Mechanics Lecture Slides）
 
+**中文** | [English](README.en.md)
+
 主讲：**张大剑**（山东大学 / Shandong University）
 教材：陈鄂生《量子力学基础教程》
 
@@ -24,13 +26,13 @@ slides/
   ch8/   自旋（6 节）
   ch9/   全同粒子体系（4 节）
   ch10/  散射（6 节）
-docs/    GitHub Pages 课程主页源码
+docs/    GitHub Pages 课程主页与在线查看器源码
 ```
 
 每节目录内含：
 
 - `chN-sM.pptx` —— 课件本体
-- `make_figures.py` —— 全部插图生成脚本（Python + matplotlib，可重复运行复现全部图）
+- `chN-sM.make_figures.py` —— 全部插图生成脚本（Python + matplotlib，可重复运行复现全部图）
 
 ## 使用与许可
 
