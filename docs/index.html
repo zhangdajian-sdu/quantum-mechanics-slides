@@ -29,9 +29,13 @@ html[lang=en] h1{font-size:clamp(44px,4.3vw,66px);letter-spacing:-.035em}html[la
   .more[aria-expanded="true"]::after{transform:translateY(1px) rotate(225deg)}
 }
 .rights{font:13px/1.6 var(--sans);color:#e1c497;margin:6px 0 0}.rights a{text-underline-offset:3px}footer .wrap{padding-block:22px}footer h2{font:700 17px/1.5 var(--serif);color:var(--ink);margin:0 0 6px}footer p{margin:0 0 3px}footer .wrap>a{white-space:nowrap}@media(max-width:650px){.rights{font-size:12px}footer .wrap>a{display:inline-block;margin-top:8px}}
+.motion{position:absolute;right:0;bottom:16px;border:1px solid #728b91;border-radius:20px;padding:5px 12px;background:#142f40;color:#deebea;font:12px/1.4 var(--sans);cursor:pointer}
+.motion:hover{background:#24485a}.motion[data-playing="true"] .start,.motion[data-playing="false"] .stop{display:none}
+.motion .stop::before{content:"Ⅱ";margin-right:6px}.motion .start::before{content:"▸";margin-right:6px}
+@media(max-width:650px){.motion{bottom:12px;padding:4px 8px;font-size:11px}nav .navlinks a{white-space:nowrap}}
 </style></head>
-<body id="top"><nav><div class="wrap"><a class="brand" href="#top"><span aria-hidden="true">ψ</span><b data-en="Quantum Mechanics">量子力学</b></a><div class="navlinks"><a href="#contents" data-en="Contents">目录</a><a class="secondary" href="#usage" data-en="Usage">使用说明</a><a class="secondary" href="#about" data-en="About">关于课程</a></div><div class="lang"><button lang="zh-CN" aria-pressed="true" onclick="setLang('zh')">中</button><button lang="en" aria-pressed="false" onclick="setLang('en')">EN</button></div></div></nav>
-<header><div class="wrap"><canvas aria-hidden="true"></canvas><div class="heroText"><p class="over" data-en="Shandong University · Undergraduate Physics">山东大学 · 本科物理课程</p><h1 data-en="Quantum Mechanics">量子力学</h1><p class="subtitle" data-en="Lecture Slides">Quantum Mechanics</p><p class="info"><span data-en="Instructor ">主讲 </span><a href="https://faculty.sdu.edu.cn/zhangdajian1/zh_CN/index.htm" data-en="Da-Jian Zhang">张大剑</a><br><span data-en="Textbook · A Basic Course in Quantum Mechanics, Esheng Chen">教材　陈鄂生《量子力学基础教程》</span></p><p class="stats"><span data-en="10 chapters">10 章</span><i>·</i><span data-en="58 lecture decks">58 节课件</span></p><p class="rights"><span data-en="© 2026 Da-Jian Zhang">© 2026 张大剑</span><span aria-hidden="true"> · </span><a href="#license">CC BY-SA 4.0</a></p></div></div></header>
+<body id="top"><nav><div class="wrap"><a class="brand" href="#top"><span aria-hidden="true">ψ</span><b data-en="Quantum Mechanics">量子力学</b></a><div class="navlinks"><a href="#contents" data-en="Chapters">章节目录</a><a class="secondary" href="#usage" data-en="Usage">使用说明</a><a class="secondary" href="#about" data-en="About">关于课程</a></div><div class="lang"><button lang="zh-CN" aria-pressed="true" onclick="setLang('zh')">中</button><button lang="en" aria-pressed="false" onclick="setLang('en')">EN</button></div></div></nav>
+<header><div class="wrap"><canvas aria-hidden="true"></canvas><div class="heroText"><p class="over" data-en="Shandong University · Undergraduate Physics">山东大学 · 本科物理课程</p><h1 data-en="Quantum Mechanics">量子力学</h1><p class="subtitle" data-en="Lecture Slides">Quantum Mechanics</p><p class="info"><span data-en="Instructor ">主讲 </span><a href="https://faculty.sdu.edu.cn/zhangdajian1/zh_CN/index.htm" data-en="Da-Jian Zhang">张大剑</a><br><span data-en="Textbook · A Basic Course in Quantum Mechanics, Esheng Chen">教材　陈鄂生《量子力学基础教程》</span></p><p class="stats"><span data-en="10 chapters">10 章</span><i>·</i><span data-en="58 lecture decks">58 节课件</span></p><p class="rights"><span data-en="© 2026 Da-Jian Zhang">© 2026 张大剑</span><span aria-hidden="true"> · </span><a href="#license">CC BY-SA 4.0</a></p></div><button type="button" class="motion" data-playing="false"><span class="stop" data-en="Pause animation">暂停动画</span><span class="start" data-en="Play animation">播放动画</span></button></div></header>
 <main class="wrap"><section id="contents"><div class="heading"><h2 data-en="Contents">章节目录</h2><span class="hint" data-en="Select a chapter to browse">展开章节，选择课件</span></div><div class="grid"></div></section>
 <div class="notes"><section id="usage"><h2 data-en="Using the slides">使用说明</h2><p data-en="Select a lecture to read online. Use the arrow keys or swipe to turn pages. Download the editable 16:9 PowerPoint with the PPTX link.">点小节标题可在线翻阅，支持键盘翻页和手机滑动。点 PPTX 可下载可编辑的 16:9 课件。</p></section><section id="about"><h2 data-en="About the course">关于课程</h2><p data-en="A one-semester course for undergraduate physics students. Lectures begin with a phenomenon and revisit it after developing the theory, followed by a summary and exercises.">面向物理类本科生，一学期完成。每节从物理现象出发，经教材推导回到案例，最后以小结与练习收束。</p></section></div></main>
 <footer id="license"><div class="wrap"><div class="rightsNote"><h2 data-en="Copyright and licensing">版权与许可</h2><p><span data-en="Original lecture materials © 2026 Da-Jian Zhang (Shandong University), licensed under ">原创课件 © 2026 张大剑（山东大学），采用</span> <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/"><span data-en="CC BY-SA 4.0 (Attribution–ShareAlike)">CC BY-SA 4.0（署名—相同方式共享）</span></a><span data-en="."> 许可。</span></p><p><span data-en="When sharing, credit Da-Jian Zhang (Shandong University), link to the ">转载时请署名「张大剑（山东大学）」，附上</span><a href="https://zhangdajian-sdu.github.io/quantum-mechanics-slides/" data-en="course homepage">课程主页</a><span data-en=" and the license, and indicate any changes. Share adaptations under the same license.">和许可链接，并注明所作修改。公开分享改编版本时，请沿用相同许可。</span></p></div><a href="https://github.com/zhangdajian-sdu/quantum-mechanics-slides">GitHub ↗</a></div></footer>
@@ -100,24 +104,97 @@ function setLang(lang){
  });
 }
 setLang('zh');
-const canvas=document.querySelector('canvas');
-function drawWave(){
- const w=canvas.clientWidth,h=canvas.clientHeight,scale=window.devicePixelRatio||1;
- canvas.width=Math.round(w*scale);canvas.height=Math.round(h*scale);
- const g=canvas.getContext('2d');g.scale(scale,scale);
- // Perspective slices through a Gaussian wave packet.
- for(let i=0;i<=38;i++){
-  const v=i/38,depth=v-.5;
-  g.beginPath();
-  for(let j=0;j<=380;j++){
-   const u=j/380,x=(.04+.91*u+depth*.105)*w;
-   const envelope=Math.exp(-Math.pow((u-.52)*3.65,2)-depth*depth*2.2);
-   const y=h*(.53+depth*.38-(u-.5)*.14-.245*envelope*Math.sin(u*19.5+depth*4.9));
-   if(j===0)g.moveTo(x,y);else g.lineTo(x,y);
-  }
-  const gold=i%7===0;
-  g.strokeStyle=gold?'rgba(246,203,134,.86)':'rgba(190,191,161,'+(.32+.27*v)+')';g.lineWidth=gold?1.35:.9;g.stroke();
+const canvas=document.querySelector('header canvas');
+const pen=canvas.getContext('2d');
+const toggle=document.querySelector('.motion');
+const reduced=matchMedia('(prefers-reduced-motion: reduce)');
+let playing=!reduced.matches, inView=true, frame=0, previous=null, time=0;
+let width=0, height=0, skin, ridge;
+
+function sizeWave(){
+ width=canvas.clientWidth;
+ height=canvas.clientHeight;
+ const scale=Math.min(window.devicePixelRatio||1,2);
+ canvas.width=Math.round(width*scale);
+ canvas.height=Math.round(height*scale);
+ pen.setTransform(scale,0,0,scale,0,0);
+ function ink(stops){
+  const brush=pen.createLinearGradient(0,0,width,0);
+  stops.forEach(([position,color])=>brush.addColorStop(position,color));
+  return brush;
  }
+ skin=ink([[0,'transparent'],[.17,'#58999f'],[.35,'#9fe0dc'],[.55,'#efd5a1'],[.71,'#dfac70'],[.88,'#69adb1'],[1,'transparent']]);
+ ridge=ink([[0,'transparent'],[.2,'#7ccbc7'],[.5,'#fff0bd'],[.7,'#ffc786'],[.92,'#80c6c2'],[1,'transparent']]);
+ drawWave();
 }
-new ResizeObserver(drawWave).observe(canvas);drawWave();
+function drawWave(){
+ pen.clearRect(0,0,width,height);
+ const center=.51+.055*Math.sin(time*.44);
+ function point(u,d){
+  const envelope=Math.exp(-Math.pow((u-center)*3.65,2)-2.6*d*d);
+  const phase=21*u+4.6*d-time*1.75;
+  const y=.51+.30*d-.11*(u-.5)-.27*envelope*Math.sin(phase);
+  return [width*(.05+.90*u+.09*d),height*y];
+ }
+ function trace(depth){
+  const steps=width<400?100:160;
+  pen.beginPath();
+  for(let j=0;j<=steps;j++){
+   const [x,y]=point(j/steps,depth);
+   if(j===0)pen.moveTo(x,y);else pen.lineTo(x,y);
+  }
+  pen.stroke();
+ }
+ pen.save();
+ pen.strokeStyle=skin;
+ for(let i=0;i<=34;i++){
+  pen.lineWidth=.9;pen.globalAlpha=.35+.25*i/34;
+  trace(i/34-.5);
+ }
+ // Faint cross-sections make the folded surface readable as it turns.
+ pen.globalAlpha=.15;pen.lineWidth=.7;
+ for(let j=2;j<52;j++){
+  pen.beginPath();
+  for(let i=0;i<=24;i++){
+   const [x,y]=point(j/52,i/24-.5);
+   if(!i)pen.moveTo(x,y);else pen.lineTo(x,y);
+  }
+  pen.stroke();
+ }
+ pen.strokeStyle=ridge;
+ for(const depth of [-.5,-.18,.15,.5]){
+  pen.globalAlpha=.10;pen.lineWidth=5;trace(depth);
+  pen.globalAlpha=.94;pen.lineWidth=1.45;trace(depth);
+ }
+ // Light travels along a few strands and fades at the two ends.
+ for(let i=0;i<6;i++){
+  const d=(i%4)/3-.5, u=(time*.069+i*.173)%1;
+  const [x,y]=point(u,d);
+  pen.globalAlpha=Math.pow(Math.sin(Math.PI*u),2);
+  const halo=pen.createRadialGradient(x,y,0,x,y,8);
+  halo.addColorStop(0,'#fff7da');halo.addColorStop(.22,'rgba(255,221,161,.7)');halo.addColorStop(1,'rgba(255,221,161,0)');
+  pen.fillStyle=halo;pen.fillRect(x-8,y-8,16,16);
+ }
+ pen.restore();
+}
+function animate(now){
+ if(previous===null || now-previous>=1000/32){
+  if(previous!==null)time+=Math.min(now-previous,100)/1000;
+  previous=now;
+  drawWave();
+ }
+ frame=requestAnimationFrame(animate);
+}
+function updatePlayback(){
+ toggle.dataset.playing=String(playing);
+ cancelAnimationFrame(frame);
+ previous=null;
+ if(playing && inView && !document.hidden)frame=requestAnimationFrame(animate);
+}
+toggle.addEventListener('click',()=>{playing=!playing;updatePlayback();});
+reduced.addEventListener('change',()=>{playing=!reduced.matches;updatePlayback();});
+document.addEventListener('visibilitychange',updatePlayback);
+new IntersectionObserver(([entry])=>{inView=entry.isIntersecting;updatePlayback();}).observe(canvas);
+new ResizeObserver(sizeWave).observe(canvas);
+sizeWave();updatePlayback();
 </script></body></html>
