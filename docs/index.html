@@ -48,6 +48,8 @@
   .card li:last-child{border-bottom:none}
   .card li a:hover{color:var(--accent)}
   .card li .dl{color:#a8b6c2;font-size:12px;white-space:nowrap}
+  .card li .dl a{color:#a8b6c2}
+  .card li .dl a:hover{color:var(--accent)}
   .card .foot{margin-top:auto;display:flex;justify-content:space-between;align-items:center;padding-top:10px}
   .card .count{font-size:12px;color:var(--muted)}
   .btn{font-size:13px;border:1px solid var(--accent);color:var(--accent);border-radius:999px;padding:4px 14px}
@@ -103,7 +105,7 @@
 
 <main id="chapters">
   <h2>章节目录</h2>
-  <div class="h2-sub">点击任意小节下载对应 PPTX，或进入仓库批量获取</div>
+  <div class="h2-sub">点击小节标题可在线翻阅，或直接下载 PPTX 课件</div>
 
   <div class="grid" id="grid"></div>
 
@@ -150,8 +152,9 @@ chapters.forEach(c=>{
   const shown=c.secs.slice(0,4);
   const items=shown.map(s=>{
     const id=`ch${c.n}-s${s}`;
-    const url=`${REPO}/raw/main/slides/ch${c.n}/${id}.pptx`;
-    return `<li><a href="${url}">第 ${c.n}.${s} 节</a><span class="dl">PPTX ↓</span></li>`;
+    const pptx=`${REPO}/raw/main/slides/ch${c.n}/${id}.pptx`;
+    const view=`viewer/?deck=ch${c.n}/${id}&t=${encodeURIComponent(`第 ${c.n}.${s} 节 · ${c.t}`)}`;
+    return `<li><a href="${view}">第 ${c.n}.${s} 节</a><span class="dl"><a href="${view}">在线查看</a> · <a href="${pptx}">PPTX ↓</a></span></li>`;
   }).join('');
   const more=c.secs.length>4
     ?`<li><a href="${REPO}/tree/main/slides/ch${c.n}">… 共 ${c.secs.length} 节，查看全部</a><span class="dl"></span></li>`:'';

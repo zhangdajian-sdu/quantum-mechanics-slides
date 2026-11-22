@@ -7,6 +7,9 @@
 
 **在线浏览与下载（课程主页）**：https://zhangdajian-sdu.github.io/quantum-mechanics-slides/
 
+- 主页上每节课件支持**在线翻页查看**（无需下载，支持键盘翻页与手机滑动）
+- 也可直接下载对应 `.pptx` 文件
+
 ## 目录结构
 
 ```

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>在线查看 · 量子力学课件</title>
+<style>
+  :root{--bg:#10161d;--bar:#1a232e;--fg:#e8e2d6;--muted:#8b99a8;--accent:#e8b07a}
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{height:100%;background:var(--bg);color:var(--fg);font-family:"Noto Serif SC","Songti SC",serif;overflow:hidden}
+  #app{display:flex;flex-direction:column;height:100%}
+
+  header{background:var(--bar);padding:10px 18px;display:flex;align-items:center;gap:14px;flex:none}
+  header .back{color:var(--muted);font-size:14px;text-decoration:none}
+  header .back:hover{color:var(--accent)}
+  header h1{font-size:16px;font-weight:600;letter-spacing:1px;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  header .dl{font-size:13px;border:1px solid var(--accent);color:var(--accent);border-radius:999px;padding:3px 12px;text-decoration:none;white-space:nowrap}
+  header .dl:hover{background:var(--accent);color:#10161d}
+
+  #stage{flex:1;position:relative;display:flex;align-items:center;justify-content:center;min-height:0}
+  #slide{max-width:100%;max-height:100%;object-fit:contain;box-shadow:0 6px 40px rgba(0,0,0,.5);user-select:none;-webkit-user-drag:none}
+
+  .nav{position:absolute;top:50%;transform:translateY(-50%);width:52px;height:52px;border-radius:50%;
+       background:rgba(26,35,46,.75);border:1px solid #2c3a49;color:var(--fg);font-size:22px;cursor:pointer;
+       display:flex;align-items:center;justify-content:center;transition:background .15s}
+  .nav:hover{background:var(--accent);color:#10161d}
+  #prev{left:16px}#next{right:16px}
+  .nav:disabled{opacity:.25;pointer-events:none}
+
+  footer{background:var(--bar);padding:8px 18px;display:flex;align-items:center;gap:16px;flex:none}
+  #counter{font-size:14px;color:var(--muted);white-space:nowrap;font-variant-numeric:tabular-nums}
+  #strip{flex:1;display:flex;gap:6px;overflow-x:auto;padding:4px 2px;scrollbar-width:thin}
+  #strip img{height:46px;border-radius:4px;border:2px solid transparent;cursor:pointer;opacity:.55;flex:none;transition:opacity .15s,border-color .15s}
+  #strip img:hover{opacity:.9}
+  #strip img.cur{border-color:var(--accent);opacity:1}
+  #hint{font-size:12px;color:#5c6b7a;white-space:nowrap}
+
+  #err{display:none;position:absolute;inset:0;align-items:center;justify-content:center;color:var(--muted);font-size:15px;text-align:center;padding:24px}
+  @media(max-width:640px){
+    #hint{display:none}
+    .nav{width:42px;height:42px;font-size:18px}
+    header h1{font-size:14px}
+  }
+</style>
+</head>
+<body>
+<div id="app">
+  <header>
+    <a class="back" href="../">← 返回目录</a>
+    <h1 id="title">量子力学课件</h1>
+    <a class="dl" id="dlBtn" href="#" target="_blank" rel="noopener">下载 PPTX</a>
+  </header>
+  <div id="stage">
+    <img id="slide" alt="课件页面">
+    <button class="nav" id="prev" aria-label="上一页">‹</button>
+    <button class="nav" id="next" aria-label="下一页">›</button>
+    <div id="err">未找到该课件或页面参数有误。<br><a href="../" style="color:var(--accent)">返回章节目录</a></div>
+  </div>
+  <footer>
+    <span id="counter">– / –</span>
+    <div id="strip"></div>
+    <span id="hint">← → 翻页 · F 全屏</span>
+  </footer>
+</div>
+
+<script>
+const REPO="https://github.com/zhangdajian-sdu/quantum-mechanics-slides";
+const q=new URLSearchParams(location.search);
+const deck=q.get('deck');           // 形如 ch4/ch4-s5
+const chapTitle=q.get('t')||'';
+
+fetch('manifest.json').then(r=>r.json()).then(man=>{
+  const total=man[deck];
+  if(!total){document.getElementById('err').style.display='flex';
+    document.getElementById('slide').style.display='none';
+    document.querySelectorAll('.nav').forEach(b=>b.style.display='none');return;}
+
+  document.getElementById('title').textContent=chapTitle||deck;
+  document.getElementById('dlBtn').href=`${REPO}/raw/main/slides/${deck}.pptx`;
+
+  const img=document.getElementById('slide');
+  const counter=document.getElementById('counter');
+  const strip=document.getElementById('strip');
+  const src=i=>`slides/${deck}/page-${i}.png`;
+  let cur=Math.min(Math.max(parseInt(q.get('p'))||1,1),total);
+
+  const thumbs=[];
+  for(let i=1;i<=total;i++){
+    const t=document.createElement('img');
+    t.src=src(i);t.loading='lazy';t.alt='第 '+i+' 页';
+    t.onclick=()=>go(i);
+    strip.appendChild(t);thumbs.push(t);
+  }
+  function render(){
+    img.src=src(cur);
+    counter.textContent=`${cur} / ${total}`;
+    document.getElementById('prev').disabled=cur<=1;
+    document.getElementById('next').disabled=cur>=total;
+    thumbs.forEach((t,i)=>t.classList.toggle('cur',i===cur-1));
+    thumbs[cur-1].scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});
+    const u=new URL(location);u.searchParams.set('p',cur);history.replaceState(null,'',u);
+    // 预取相邻页
+    [cur+1,cur+2,cur-1].forEach(i=>{if(i>=1&&i<=total){new Image().src=src(i);}});
+  }
+  function go(i){if(i>=1&&i<=total){cur=i;render();}}
+  document.getElementById('prev').onclick=()=>go(cur-1);
+  document.getElementById('next').onclick=()=>go(cur+1);
+
+  document.addEventListener('keydown',e=>{
+    if(e.key==='ArrowLeft'||e.key==='PageUp')go(cur-1);
+    else if(e.key==='ArrowRight'||e.key==='PageDown'||e.key===' ')go(cur+1);
+    else if(e.key==='Home')go(1);
+    else if(e.key==='End')go(total);
+    else if(e.key==='f'||e.key==='F'){document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen();}
+  });
+
+  // 触摸滑动
+  let sx=null;
+  const stage=document.getElementById('stage');
+  stage.addEventListener('touchstart',e=>sx=e.touches[0].clientX,{passive:true});
+  stage.addEventListener('touchend',e=>{
+    if(sx===null)return;
+    const dx=e.changedTouches[0].clientX-sx;
+    if(dx>50)go(cur-1);else if(dx<-50)go(cur+1);
+    sx=null;
+  },{passive:true});
+
+  render();
+}).catch(()=>{document.getElementById('err').style.display='flex';});
+</script>
+</body>
+</html>
