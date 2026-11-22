@@ -101,7 +101,8 @@ const q=new URLSearchParams(location.search);
 const deck=q.get('deck');           // 形如 ch4/ch4-s5
 const chapTitle=q.get('t')||'';
 
-fetch('manifest.json').then(r=>r.json()).then(man=>{
+fetch('manifest.json',{cache:'no-store'}).then(r=>r.json()).then(man=>{
+  const VER=man._v||'1';
   const total=man[deck];
   if(!total){document.getElementById('err').style.display='flex';
     document.getElementById('slide').style.display='none';
@@ -113,7 +114,7 @@ fetch('manifest.json').then(r=>r.json()).then(man=>{
   const img=document.getElementById('slide');
   const counter=document.getElementById('counter');
   const strip=document.getElementById('strip');
-  const src=i=>`slides/${deck}/page-${i}.png`;
+  const src=i=>`slides/${deck}/page-${i}.png?v=${VER}`;
   let cur=Math.min(Math.max(parseInt(q.get('p'))||1,1),total);
 
   const thumbs=[];
