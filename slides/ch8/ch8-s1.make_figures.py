@@ -100,4 +100,93 @@ for s in ax.spines.values():
 ax.set_title("斯特恩–盖拉赫实验（1922）：束流只裂成两束，屏上只有两个斑点", fontsize=13, color=INK, pad=8)
 save(fig, "fig_sg.png")
 
+# ---------- 钠原子 D 双线：3P 精细结构示意 ----------
+fig, ax = plt.subplots(figsize=(7.2, 6.0), facecolor=PAPER)
+ax.set_facecolor(PAPER)
+
+y_s, y_p1, y_p3 = 0.0, 2.0, 2.34   # 3P 分裂间隔夸大画出
+x0, x1 = 1.2, 5.2
+
+# 能级
+ax.plot([x0, x1], [y_s, y_s], color=INK, lw=2.6)
+ax.plot([x0, x1], [y_p1, y_p1], color=INK, lw=2.6)
+ax.plot([x0, x1], [y_p3, y_p3], color=INK, lw=2.6)
+ax.text(x0 - 0.18, y_s, r"$3S_{1/2}$", fontsize=16, color=INK, ha="right", va="center")
+ax.text(x0 - 0.18, y_p1, r"$3P_{1/2}$", fontsize=16, color=INK, ha="right", va="center")
+ax.text(x0 - 0.18, y_p3, r"$3P_{3/2}$", fontsize=16, color=INK, ha="right", va="center")
+
+# 3P 间隔标注
+ax.annotate("", xy=(x1 + 0.45, y_p3), xytext=(x1 + 0.45, y_p1),
+            arrowprops=dict(arrowstyle="<->", color=GRAY, lw=1.4))
+ax.text(x1 + 0.62, (y_p1 + y_p3) / 2, "精细分裂\n（间隔已夸大）", fontsize=10.5, color=GRAY, va="center")
+
+# 两条跃迁
+x_a, x_b = 2.6, 3.8
+ax.annotate("", xy=(x_a, y_s + 0.06), xytext=(x_a, y_p3 - 0.06),
+            arrowprops=dict(arrowstyle="-|>", color=OCHRE, lw=2.2))
+ax.annotate("", xy=(x_b, y_s + 0.06), xytext=(x_b, y_p1 - 0.06),
+            arrowprops=dict(arrowstyle="-|>", color=TEAL, lw=2.2))
+ax.text(x_a, y_p3 + 0.24, r"$D_2$ 线", fontsize=13, color=OCHRE, ha="center")
+ax.text(x_a, y_s - 0.32, "589.0 nm", fontsize=12, color=OCHRE, ha="center")
+ax.text(x_b, y_p3 + 0.24, r"$D_1$ 线", fontsize=13, color=TEAL, ha="center")
+ax.text(x_b, y_s - 0.32, "589.6 nm", fontsize=12, color=TEAL, ha="center")
+
+# 双竖线（光谱线）
+ax.plot([7.05, 7.05], [0.2, 2.1], color=OCHRE, lw=3.2)
+ax.plot([7.3, 7.3], [0.2, 2.1], color=TEAL, lw=2.2)
+ax.text(7.17, -0.5, "两线间隔 " + r"$\Delta\lambda\approx 0.6$ nm", fontsize=11, color=GRAY, ha="center")
+ax.text(7.17, 2.45, "光谱仪里看到的两条线", fontsize=11, color=GRAY, ha="center")
+
+ax.set_xlim(-0.2, 8.2); ax.set_ylim(-1.0, 3.1)
+ax.set_xticks([]); ax.set_yticks([])
+for s in ax.spines.values():
+    s.set_visible(False)
+save(fig, "fig_na_doublet.png")
+
+
+# ---------- 布洛赫球：任意自旋态的几何图像 ----------
+from mpl_toolkits.mplot3d import Axes3D  # noqa: F401
+
+fig = plt.figure(figsize=(6.8, 6.2), facecolor=PAPER)
+ax = fig.add_subplot(111, projection="3d", facecolor=PAPER)
+
+# 球面网格
+u = np.linspace(0, 2 * np.pi, 40)
+v = np.linspace(0, np.pi, 24)
+xs = np.outer(np.cos(u), np.sin(v))
+ys = np.outer(np.sin(u), np.sin(v))
+zs = np.outer(np.ones_like(u), np.cos(v))
+ax.plot_wireframe(xs, ys, zs, color=GRAY, alpha=0.22, lw=0.7)
+# 赤道
+th = np.linspace(0, 2 * np.pi, 100)
+ax.plot(np.cos(th), np.sin(th), 0, color=GRAY, lw=1.0, alpha=0.5)
+
+# 坐标轴
+for vec, lab in [((1.45, 0, 0), "$S_x$"), ((0, 1.45, 0), "$S_y$"), ((0, 0, 1.5), "$S_z$")]:
+    ax.quiver(0, 0, 0, *vec, color=INK, lw=1.4, arrow_length_ratio=0.06)
+ax.text(1.6, 0, 0, "$S_x$", fontsize=13, color=INK)
+ax.text(0, 1.62, 0, "$S_y$", fontsize=13, color=INK)
+ax.text(0, 0, 1.62, "$S_z$", fontsize=13, color=INK)
+
+# 一般态矢
+theta, phi = np.deg2rad(52), np.deg2rad(38)
+vdir = np.array([np.sin(theta) * np.cos(phi), np.sin(theta) * np.sin(phi), np.cos(theta)])
+ax.quiver(0, 0, 0, *vdir, color=OCHRE, lw=3.0, arrow_length_ratio=0.10)
+ax.text(*(vdir * 1.22), r"$\chi=a\alpha+b\beta$", fontsize=13.5, color=OCHRE)
+
+# 两极：alpha / beta
+ax.scatter([0], [0], [1], color=TEAL, s=64)
+ax.scatter([0], [0], [-1], color=TEAL, s=64)
+ax.text(0.08, 0.08, 1.13, r"$\alpha=\binom{1}{0}$ 自旋向上", fontsize=12.5, color=TEAL)
+ax.text(0.08, 0.08, -1.3, r"$\beta=\binom{0}{1}$ 自旋向下", fontsize=12.5, color=TEAL)
+
+ax.set_box_aspect((1, 1, 1))
+ax.set_xlim(-1.3, 1.3); ax.set_ylim(-1.3, 1.3); ax.set_zlim(-1.35, 1.55)
+ax.set_axis_off()
+ax.view_init(elev=16, azim=-58)
+fig.subplots_adjust(left=0, right=1, top=1, bottom=0)
+fig.savefig(OUT / "fig_bloch.png", dpi=200, bbox_inches="tight", facecolor=PAPER, pad_inches=0.05)
+plt.close(fig)
+print("saved fig_bloch.png")
+
 print("done:", sorted(p.name for p in OUT.glob("*.png")))
